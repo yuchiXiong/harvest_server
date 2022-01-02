@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.7'
 
+gem 'jwt'
 gem 'rest-client'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

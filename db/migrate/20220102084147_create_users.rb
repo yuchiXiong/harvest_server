@@ -1,6 +1,7 @@
 class CreateUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :users do |t|
+      t.string :uuid, null: false
       t.string :account, comment: '用户账户名', null: false
       t.string :password_digest, comment: '密码', null: false
       t.string :nick_name, comment: '用户昵称', null: false
@@ -10,5 +11,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+
+    add_index :users, :uuid, unique: true
   end
 end

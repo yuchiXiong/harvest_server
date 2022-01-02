@@ -1,5 +1,8 @@
 class BillsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    render_json_success(Bill.all)
+    u = User.find_by_uuid(@user_uuid)
+    render_json_success(u.bills)
   end
 end

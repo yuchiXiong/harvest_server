@@ -18,12 +18,14 @@ ActiveRecord::Schema.define(version: 2022_01_02_084147) do
     t.integer "category"
     t.string "amount"
     t.text "description"
-    t.integer "user_id", null: false
+    t.string "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_bills_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "uuid", null: false
     t.string "account", null: false
     t.string "password_digest", null: false
     t.string "nick_name", null: false
@@ -32,6 +34,7 @@ ActiveRecord::Schema.define(version: 2022_01_02_084147) do
     t.string "session_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["uuid"], name: "index_users_on_uuid", unique: true
   end
 
 end

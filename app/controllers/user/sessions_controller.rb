@@ -9,14 +9,18 @@ class User::SessionsController < ApplicationController
     u = User.find_by_wechat_open_id(result[1])
 
     if u
-      render_json_success('afasdfa,反正登录成功了')
+      u.update(session_key: result[0])
     else
-      render_json_success('新用户，创建用户')
-
-      # User.create!(account)
+      u = User.create!(
+          account:        "微信用户#{SecureRandom.hex(3)}",
+          nick_name:      "微信用户#{SecureRandom.hex(3)}",
+          password:       SecureRandom.hex(32),
+          session_key:    result[0],
+          wechat_open_id: result[1]
+      )
     end
 
-
+    render_json_success({ jwt: u.jwt })
   rescue WeChat::WeChatError => e
     render_json_error(e.message)
   end

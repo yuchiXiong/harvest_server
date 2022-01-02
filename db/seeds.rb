@@ -46,14 +46,15 @@
 
 data     = JSON.parse(File.open(Rails.root.join('data.json')).read)
 category = data.map { |record| record['类别'] }.uniq
+b = User.first.bills
 data.map do |record|
   # {"日期"=>"2018/1/5", "收支类型"=>"支出", "类别"=>"服饰", "金额"=>"88", "备注"=>"买了灰色的围巾！"}
-  Bill.create!(
+  b.create!(
       recorded_at: Time.parse(record['日期']),
-      in_or_out: record['收支类型'] == '支出' ? 1 : 2,
+      in_or_out:   record['收支类型'] == '支出' ? 1 : 2,
       category:    category.find_index(record['类别']),
       amount:      record['金额'],
       description: record['备注'],
-      user_id: 1,
+      user_id:     '6c2f47a0-4aae-4cc9-86ff-77e590d0b28b'
   )
 end
