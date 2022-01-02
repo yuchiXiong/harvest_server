@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  recorded_at: 2022-01-02 15:59:15
+  in_or_out: 1
+  category: 
+  amount: MyString
+  description: MyText
+
+two:
+  recorded_at: 2022-01-02 15:59:15
+  in_or_out: 1
+  category: 
+  amount: MyString
+  description: MyText
