@@ -1,15 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  recorded_at: 2022-01-02 15:59:15
+  <% 1000.times do |n| %>
+bill_<%= n %>:
+  id: <%= n %>
+  recorded_at: <%= Time.current - rand(0..9999).days %>
   in_or_out: 1
-  category: 
-  amount: MyString
-  description: MyText
-
-two:
-  recorded_at: 2022-01-02 15:59:15
-  in_or_out: 1
-  category: 
-  amount: MyString
-  description: MyText
+  category: 0
+  amount: "10"
+  description: "饿了么会员"
+  user_id: "test_user"
+  <% end %>

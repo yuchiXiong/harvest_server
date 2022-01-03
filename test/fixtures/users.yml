@@ -1,13 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  account: MyString
-  password_degist: MyString
-  nick_name: MyString
-  open_id: MyString
-
-two:
-  account: MyString
-  password_degist: MyString
-  nick_name: MyString
-  open_id: MyString
+  id: 1
+  uuid: "test_user"
+  account: "测试用户9527"
+  password_digest: "123"
+  nick_name: "测试用户9527"
+  avatar: nil
