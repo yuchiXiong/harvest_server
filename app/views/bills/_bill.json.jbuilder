@@ -1,1 +1,1 @@
-json.(bill, :id, :recorded_at, :category, :amount, :description)
+json.(bill, :id, :recorded_at, :category, :amount, :description, :in_or_out)
