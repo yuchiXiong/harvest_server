@@ -1,6 +1,7 @@
 require 'wechat/wechat'
 
 class User::SessionsController < ApplicationController
+  skip_before_action :authenticate_user!
   include RestClient
 
   def create

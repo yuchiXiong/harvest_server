@@ -1,31 +1,36 @@
 class ApplicationController < ActionController::API
+  include ActionController::Caching
+  before_action :authenticate_user!
 
+  class UnauthorizedError < StandardError; end
+
+  rescue_from(UnauthorizedError) do |e|
+    render_json_error(e, 401)
+  end
 
   def render_json_success(data)
     render json: {
-        code:         0,
         errorMessage: '',
         data:         data
     }
   end
 
-  def render_json_error(message)
+  def render_json_error(message, code = 500)
     render json: {
-        code:         500,
         errorMessage: message
-    }
+    }, status:   code
   end
 
   private
 
   def authenticate_user!
     token = request.headers['access-token']
-    raise JWT::VerificationError if token.empty? || token.nil?
+    raise JWT::VerificationError if token.nil? || token.empty?
     @user_uuid = User.find_by_jwt(token)
   rescue JWT::ExpiredSignature
-    return render_json_error('expire')
+    raise UnauthorizedError.new '当前身份信息已过期'
   rescue JWT::VerificationError
-    return render_json_error('error')
+    raise UnauthorizedError.new '当前身份信息无效'
   end
 
 end

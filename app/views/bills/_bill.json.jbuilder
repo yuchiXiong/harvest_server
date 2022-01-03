@@ -1,0 +1,1 @@
+json.(bill, :id, :recorded_at, :category, :amount, :description)
