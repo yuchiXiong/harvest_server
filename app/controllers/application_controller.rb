@@ -4,8 +4,15 @@ class ApplicationController < ActionController::API
 
   class UnauthorizedError < StandardError; end
 
-  rescue_from(UnauthorizedError) do |e|
-    render_json_error(e, 401)
+  rescue_from(StandardError) do |e|
+    case e
+    when UnauthorizedError
+      render_json_error(e, 401)
+    when ActiveRecord::RecordNotFound
+      render_json_error('资源不存在', 404)
+    else
+      render_json_error('服务器异常', 500)
+    end
   end
 
   def render_json_success(data)
