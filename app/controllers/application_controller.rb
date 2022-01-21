@@ -10,7 +10,10 @@ class ApplicationController < ActionController::API
       render_json_error(e, 401)
     when ActiveRecord::RecordNotFound
       render_json_error('资源不存在', 404)
+    when ActionController::ParameterMissing
+      render_json_error(e.message, 400)
     else
+      logger.error e
       render_json_error('服务器异常', 500)
     end
   end
