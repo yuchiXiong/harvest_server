@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.7'
 
+gem 'thor'
+
 gem 'jbuilder'
 gem 'jwt'
 gem 'rest-client'
