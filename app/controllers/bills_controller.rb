@@ -1,5 +1,4 @@
 class BillsController < ApplicationController
-
   def index
     @start_at = Date.parse(params[:date] || Time.current.to_s).beginning_of_month
     ended     = @start_at + 1.month
@@ -16,6 +15,6 @@ class BillsController < ApplicationController
   end
 
   def bill_params(params)
-    params.require(:bill).permit( :recorded_at, :in_or_out, :category, :amount, :description)
+    params.require(:bill).permit(:recorded_at, :in_or_out, :category, :amount, :description)
   end
 end

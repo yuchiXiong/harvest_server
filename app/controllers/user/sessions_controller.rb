@@ -5,7 +5,7 @@ class User::SessionsController < ApplicationController
   include RestClient
 
   def create
-    result = WeChat::code2session(params[:code])
+    result = WeChat.code2session(params[:code])
 
     u = User.find_by_wechat_open_id(result[1])
 
@@ -13,11 +13,11 @@ class User::SessionsController < ApplicationController
       u.update(session_key: result[0])
     else
       u = User.create!(
-          account:        "微信用户#{SecureRandom.hex(3)}",
-          nick_name:      "微信用户#{SecureRandom.hex(3)}",
-          password:       SecureRandom.hex(32),
-          session_key:    result[0],
-          wechat_open_id: result[1]
+        account: "微信用户#{SecureRandom.hex(3)}",
+        nick_name: "微信用户#{SecureRandom.hex(3)}",
+        password: SecureRandom.hex(32),
+        session_key: result[0],
+        wechat_open_id: result[1]
       )
     end
 
@@ -25,5 +25,4 @@ class User::SessionsController < ApplicationController
   rescue WeChat::WeChatError => e
     render_json_error(e.message)
   end
-
 end

@@ -13,10 +13,9 @@ class User < ApplicationRecord
 
   def jwt
     payload = {
-        exp:  Time.current.to_i + 7 * 24 * 60 * 60 * 1000,
-        uuid: uuid,
+      exp: Time.current.to_i + 7 * 24 * 60 * 60 * 1000,
+      uuid: uuid
     }
     JWT.encode payload, 'xxxxx', 'HS256'
   end
-
 end
