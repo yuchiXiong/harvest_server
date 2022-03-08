@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   has_secure_password
   has_many :bills, primary_key: :uuid
@@ -14,7 +16,7 @@ class User < ApplicationRecord
   def jwt
     payload = {
       exp: Time.current.to_i + 7 * 24 * 60 * 60 * 1000,
-      uuid: uuid
+      uuid:
     }
     JWT.encode payload, 'xxxxx', 'HS256'
   end

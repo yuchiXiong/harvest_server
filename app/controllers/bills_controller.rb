@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BillsController < ApplicationController
   def index
     @start_at = Date.parse(params[:date] || Time.current.to_s).beginning_of_month

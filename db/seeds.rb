@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # ! 合并多个账单 CSV 文件为一个 CSV & JSON
 # require 'csv'
 #
@@ -38,7 +39,6 @@
 # afile.close
 # puts '数据合并完成'
 
-
 # ! 将 JSON 文件导入数据库
 # data     = JSON.parse(File.open(Rails.root.join('data.json')).read)
 # category = data.map { |record| record['类别'] }.uniq
@@ -77,4 +77,3 @@
 #       user_id:     '6c2f47a0-4aae-4cc9-86ff-77e590d0b28b'
 #   )
 # end
-

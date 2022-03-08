@@ -1,4 +1,6 @@
-class ApplicationController < ActionController::API
+# frozen_string_literal: true
+
+class ApplicationController < ActionController::Base
   include ActionController::Caching
   before_action :authenticate_user!
 
@@ -21,7 +23,7 @@ class ApplicationController < ActionController::API
   def render_json_success(data)
     render json: {
       errorMessage: '',
-      data: data
+      data:
     }
   end
 
